@@ -12,5 +12,5 @@ import com.intellij.openapi.util.IconLoader;
 import javax.swing.*;
 
 public class StylusIcons {
-    public static final Icon FILE = IconLoader.getIcon("/com/stylusplugin/icons/jar-gray.png");
+    public static final Icon FILE = IconLoader.getIcon("/com/stylusplugin/icons/stylus.png");
 }
