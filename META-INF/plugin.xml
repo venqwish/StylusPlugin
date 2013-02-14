@@ -40,5 +40,6 @@
       <fileTypeFactory implementation="com.stylusplugin.StylusFileTypeFactory"/>
       <lang.parserDefinition language="Stylus" implementationClass="com.stylusplugin.StylusParserDefinition"/>
       <lang.syntaxHighlighterFactory key="Stylus" implementationClass="com.stylusplugin.StylusSyntaxHighlighterFactory"/>
+      <colorSettingsPage implementation="com.stylusplugin.StylusColorSettingsPage"/>
   </extensions>
 </idea-plugin>

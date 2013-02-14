@@ -15,21 +15,21 @@ import com.intellij.psi.TokenType;
 %eof{  return;
 %eof}
 
-WHITESPACE = [ \t]
-
-COMMENT = {TRADITIONAL_COMMENT} | {DOCUMENTATION_COMMENT} | {LINE_COMMENT}
-
-TRADITIONAL_COMMENT   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
-DOCUMENTATION_COMMENT = "/**" {COMMENT_CONTENT} "*"+ "/"
-COMMENT_CONTENT = ( [^*] | \*+ [^/*] )*
-LINE_COMMENT = {WHITESPACE}* "//" .*
-
 CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
+LINE_TERMINATOR = \r|\n|\r\n
+INPUT_CHARACTER = [^\r\n]
+NUMBER = [1-9]
+
+COMMENT = {COMMENT_CSS} | {COMMENT_SILENT}
+
+COMMENT_CSS   = "/*" [^*] ~"*/"
+COMMENT_SILENT = {WHITE_SPACE}* "//" .*
+
 FIRST_VALUE_CHARACTER=[^ \n\r\f\\] | "\\"{CRLF} | "\\".
 VALUE_CHARACTER=[^\n\r\f\\] | "\\"{CRLF} | "\\".
 
-SEPARATOR=[:=]
+SEPARATOR=[::]
 KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\"{CRLF} | "\\".
 
 %state WAITING_VALUE
