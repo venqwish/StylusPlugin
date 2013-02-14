@@ -1,0 +1,21 @@
+{
+  parserClass="com.stylusplugin.parser.StylusParser"
+  stubParserClass="com.stylusplugin.parser.GeneratedParserUtilBase"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Stylus"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.stylusplugin.psi"
+  psiImplPackage="com.stylusplugin.psi.impl"
+
+  elementTypeHolderClass="com.stylusplugin.psi.StylusTypes"
+  elementTypeClass="com.stylusplugin.psi.StylusElementType"
+  tokenTypeClass="com.stylusplugin.psi.StylusTokenType"
+}
+
+stylusFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY
