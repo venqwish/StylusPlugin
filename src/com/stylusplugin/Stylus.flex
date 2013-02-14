@@ -15,11 +15,20 @@ import com.intellij.psi.TokenType;
 %eof{  return;
 %eof}
 
+WHITESPACE = [ \t]
+
+COMMENT = {TRADITIONAL_COMMENT} | {DOCUMENTATION_COMMENT} | {LINE_COMMENT}
+
+TRADITIONAL_COMMENT   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
+DOCUMENTATION_COMMENT = "/**" {COMMENT_CONTENT} "*"+ "/"
+COMMENT_CONTENT = ( [^*] | \*+ [^/*] )*
+LINE_COMMENT = {WHITESPACE}* "//" .*
+
 CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
 FIRST_VALUE_CHARACTER=[^ \n\r\f\\] | "\\"{CRLF} | "\\".
 VALUE_CHARACTER=[^\n\r\f\\] | "\\"{CRLF} | "\\".
-END_OF_LINE_COMMENT=("#"|"!")[^\r\n]*
+
 SEPARATOR=[:=]
 KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\"{CRLF} | "\\".
 
@@ -27,7 +36,7 @@ KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\"{CRLF} | "\\".
 
 %%
 
-<YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return StylusTypes.COMMENT; }
+<YYINITIAL> {COMMENT}                           { yybegin(YYINITIAL); return StylusTypes.COMMENT; }
 
 <YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return StylusTypes.KEY; }
 
